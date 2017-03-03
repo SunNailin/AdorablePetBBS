@@ -1,0 +1,16 @@
+<%@ page contentType="text/html; charset=GBK" %>
+<%@page import="java.sql.*"%>
+<%@ include file="dbUtil.jsp"%>
+
+<%
+request.setCharacterEncoding("gb2312");
+String username=request.getParameter("name")==null?"":new
+String(request.getParameter("name").getBytes("ISO8859_1"), "GB2312");
+String sql="select * from users where username='"+username+"'";
+ResultSet rs=st.executeQuery(sql);
+if(rs.next()){
+	out.print("false");
+}else{
+	out.print("true");
+}
+%>

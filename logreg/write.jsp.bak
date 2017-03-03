@@ -1,0 +1,252 @@
+<%@page contentType="text/html; charset=gb2312" language="java" import="java.sql.*" %>
+<%@ page import="java.util.*"%>  
+<%@ page import="java.text.*"%>  
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- 
+function CheckValue()//检查标题内容是否为空值
+{
+ var name=document.all.name.value;
+  var re=/( )/gi
+  name=name.replace(re,"")
+  re=/\</gi
+  name=name.replace(re,"&lt;")
+  if(name==""||name.length<1)
+  {
+    alert("用户名不能为空");
+    document.all.name.focus();
+    return false;
+  }
+  document.all.name.value=name;
+  TheText=document.all.email.value;
+  var re=/( )/gi
+  TheText=TheText.replace(re,"")
+  if(TheText=="")
+  {
+        alert("E_Mail地址不能为空");
+    document.all.email.focus();
+    return false;
+  }
+
+  if(form1.password.value!=form1.password1.value)
+	  {
+	  alert("两次输入密码不相同,请重新输入!");
+		 form1.password.focus();
+	  return false;
+  }
+  return true;
+}
+
+// -->
+</SCRIPT>
+
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <style type="text/css">
+<!--
+.STYLE1 {color: #FF0000}
+-->
+  </style>
+</head>
+<script>
+function checkMail(str){ 
+var strReg=""; 
+var r; 
+var strText=document.all(str).value; 
+//strReg=/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/i;
+strReg=/^\w+((-\w+)|(\.\w+))*\@{1}\w+\.{1}\w{2,4}(\.{0,1}\w{2}){0,1}/ig;//利用正则表达式对邮箱格式进行判断
+r=strText.search(strReg); 
+if(r==-1) { 
+alert("邮箱格式错误!"); 
+document.email.focus();
+} 
+}
+</script>
+ <body background="360wallpaper_dt1.jpg">
+ <center><span class="STYLE1">带*的为必填选项 </span></center>
+ 
+   <table width="528" height="427" border="0" align="center" bgcolor="#00CCFF">
+     <form name=form1 action="insert.jsp"> <!--将form表单放到table中页面就不会跳转-->
+	 
+	 
+	 <tr>
+        <td width="99" height="51"><div align="center">用户名：</div></td>
+        <td width="419"><input type="text" name="name">
+        <span class="STYLE1">***不能含有非法字符</span></td>
+      </tr>
+      <tr>
+        <td height="48" bgcolor="#CCCCCC"><div align="center">密码：</div></td>
+        <td bgcolor="#CCCCCC"><input type="password" name="password">
+        <span class="STYLE1">***长度不能大于12小于4</span></td>
+      </tr>
+	  <tr>
+	  <td height="48"><div align="center">确认密码：</div></td>>
+       <td><input type="password" name="password1">
+          <span class="STYLE1">***长度不能大于12小于4</span></td>
+      </tr>
+      <tr>
+        <td height="49" align="center" bgcolor="#CCCCCC" ><div align="center">性别：</div></td>
+        <td bgcolor="#CCCCCC"><input type="radio" name="sex" value="男"checked>
+        男  <input type="radio" name="sex" value="女">
+        女 <span class="STYLE1">* </span></td>
+      </tr>
+      <tr>
+        <td height="51"><div align="center">邮箱：</div></td>
+        <td><input type="text" name="email" onChange="checkMail('email')">
+          <span class="STYLE1">***</span></td>
+      </tr>
+      <tr>
+        <td height="46" bgcolor="#CCCCCC"><div align="center">qq：</div></td>
+        <td bgcolor="#CCCCCC"><input type="text" name="qq"></td>
+      </tr>
+      <tr bgcolor="#FFFFFF">       
+                    <td width="99" height="1" bgcolor="#00CCFF" class="tablerow">出生年生日：</td>      
+                    <td width="419" height="1" bgcolor="#00CCFF" class="tablerow">       
+                      <input type="text" name="year" size="4" />    
+                      年       
+                      <select name="month">    
+                        <option value="">&nbsp;</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                      </select>
+                      月       
+                      <select name="day">    
+                        <option value="">&nbsp;</option>    
+                        <option value="1">1</option>    
+                        <option value="2">2</option>    
+                        <option value="3">3</option>    
+                        <option value="4">4</option>    
+                        <option value="5">5</option>    
+                        <option value="6">6</option>    
+                        <option value="7">7</option>    
+                        <option value="8">8</option>    
+                        <option value="9">9</option>    
+                        <option value="10">10</option>    
+                        <option value="11">11</option>    
+                        <option value="12">12</option>    
+                        <option value="13">13</option>    
+                        <option value="14">14</option>    
+                        <option value="15">15</option>    
+                        <option value="16">16</option>    
+                        <option value="17">17</option>    
+                        <option value="18">18</option>    
+                        <option value="19">19</option>    
+                        <option value="20">20</option>    
+                        <option value="21">21</option>    
+                        <option value="22">22</option>    
+                        <option value="23">23</option>    
+                        <option value="24">24</option>    
+                        <option value="25">25</option>    
+                        <option value="26">26</option>    
+                        <option value="27">27</option>    
+                        <option value="28">28</option>    
+                        <option value="29">29</option>    
+                        <option value="30">30</option>    
+                        <option value="31">31</option>    
+                      </select>    
+                      日      
+        </td>        
+     </tr>      
+
+      <tr>       
+                          <td bgcolor="#FFFFFF">       
+                            <select name=icon size=1 onChange="document.images['avatar'].src=options[selectedIndex].value;" style="BACKGROUND-COLOR: #FFFFFF; BORDER-BOTTOM: 1px double; BORDER-LEFT: 1px double; BORDER-RIGHT: 1px double; BORDER-TOP: 1px double; COLOR: #000000">      
+                              <option value='./PIC/Image1.gif'>Image1</option>
+                              <option value='./PIC/Image2.gif'>Image2</option>
+                              <option value='./PIC/Image3.gif'>Image3</option>
+                              <option value='./PIC/Image3.gif'>Image3</option>
+                              <option value='./PIC/Image4.gif'>Image4</option>
+                              <option value='./PIC/Image5.gif'>Image5</option>
+                              <option value='./PIC/Image6.gif'>Image6</option>
+                              <option value='./PIC/Image7.gif'>Image7</option>
+                              <option value='./PIC/Image8.gif'>Image8</option>
+                              <option value='./PIC/Image9.gif'>Image9</option>
+                              <option value='./PIC/Image10.gif'>Image10</option>
+                              <option value='./PIC/Image11.gif'>Image11</option>
+                              <option value='./PIC/Image12.gif'>Image12</option>
+                              <option value='./PIC/Image13.gif'>Image13</option>
+                              <option value='./PIC/Image14.gif'>Image14</option>
+                              <option value='./PIC/Image15.gif'>Image15</option>
+                              <option value='./PIC/Image16.gif'>Image16</option>
+                              <option value='./PIC/Image17.gif'>Image17</option>
+                              <option value='./PIC/Image18.gif'>Image18</option>
+                              <option value='./PIC/Image19.gif' >Image19</option>
+                              <option value='./PIC/Image20.gif'>Image20</option>
+                              <option value='./PIC/Image21.gif'>Image21</option>
+                              <option value='./PIC/Image22.gif'>Image22</option>
+                              <option value='./PIC/Image23.gif'>Image23</option>
+                              <option value='./PIC/Image24.gif'>Image24</option>
+                              <option value='./PIC/Image25.gif'>Image25</option>
+                              <option value='./PIC/Image26.gif'>Image26</option>
+                              <option value='./PIC/Image27.gif'>Image27</option>
+                              <option value='./PIC/Image28.gif'>Image28</option>
+                              <option value='./PIC/Image29.gif'>Image29</option>
+                              <option value='./PIC/Image30.gif'>Image30</option>
+                              <option value='./PIC/Image31.gif'>Image31</option>
+                              <option value='./PIC/Image32.gif'>Image32</option>
+                              <option value='./PIC/Image33.gif'>Image33</option>
+                              <option value='./PIC/Image34.gif'>Image34</option>
+                              <option value='./PIC/Image35.gif'>Image35</option>
+                              <option value='./PIC/Image36.gif'>Image36</option>
+                              <option value='./PIC/Image37.gif'>Image37</option>
+                              <option value='./PIC/Image38.gif'>Image38</option>
+                              <option value='./PIC/Image39.gif'>Image39</option>
+                              <option value='./PIC/Image40.gif'>Image40</option>
+                              <option value='./PIC/Image41.gif'>Image41</option>
+                              <option value='./PIC/Image42.gif'>Image42</option>
+                              <option value='./PIC/Image43.gif'>Image43</option>
+                              <option value='./PIC/Image44.gif'>Image44</option>
+                              <option value='./PIC/Image45.gif'>Image45</option>
+                              <option value='./PIC/Image46.gif'>Image46</option>
+                              <option value='./PIC/Image47.gif'>Image47</option>
+                              <option value='./PIC/Image48.gif'>Image48</option>
+                              <option value='./PIC/Image49.gif'>Image49</option>
+                              <option value='./PIC/Image50.gif'>Image50</option>
+                              <option value='./PIC/Image51.gif'>Image51</option>
+                              <option value='./PIC/Image52.gif'>Image52</option>
+                              <option value='./PIC/Image53.gif'>Image53</option>
+                              <option value='./PIC/Image54.gif'>Image54</option>
+                              <option value='./PIC/Image55.gif'>Image55</option>
+                              <option value='./PIC/Image56.gif'>Image56</option>
+                              <option value='./PIC/Image57.gif'>Image57</option>
+                              <option value='./PIC/Image58.gif'>Image58</option>
+                              <option value='./PIC/Image59.gif'>Image59</option>
+                              <option value='./PIC/Image60.gif'>Image60</option>
+                            </select>        </td>
+                          <td width=419 height=32 bgcolor="#FFFFFF">&nbsp;&nbsp;<img id=avatar src="./PIC/Image1.gif" alt=个人形象代表 width="32" height="32">&nbsp;-          
+                            选择自己满意的头像</td>       
+     </tr>       
+    <%String tdate=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); %>
+      <tr>
+        <td height="59" bgcolor="#00CCFF"><div align="center">注册日期：</div></td>
+        <td bgcolor="#00CCFF"><input type="text" name="regdate"value="<%=tdate%>" readonly></td>
+      </tr>
+<tr bgcolor="#FFFFFF">       
+                    <td class="tablerow" height="0" colspan="2" width="731" bgcolor="#C6EFFF">       
+                      <div align="center">       
+                        <input type="submit" name="regsubmit" onclick='return CheckValue()'; value="免费注册" />      
+                      </div>      
+                    </td>      
+                 </tr> 
+	</form> 
+   </table>
+    
+ 
+
+ </body>
+</html>

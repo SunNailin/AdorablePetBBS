@@ -1,0 +1,62 @@
+<%@page contentType="text/html; charset=gb2312" language="java" import="java.sql.*" errorPage="err.jsp" %>
+<%@include file="dbUtil.jsp"%>
+
+<title>通知管理—临海沐风BBS管理系统</title>
+<%
+if (session.getValue("admin_id")==null)
+{
+ response.sendRedirect("err.jsp?id=14");
+ return;
+}
+
+%>
+<html>
+<body>
+<center>
+<h1>临海沐风BBS管理系统—通知管理</h1>
+<table cellspacing="0" cellpadding="0" border="0" width="99%" align="center">
+  <tr> 
+    <td bgcolor="#009ACE" width="17"> 
+    
+  <tr> 
+    <td class="tablerow" colspan="7" bgcolor="#FFFFFF" height="16"> 
+      <table border="0" cellspacing="0" width="100%" cellpadding="0">
+        <tr> 
+          <td width="40%" align="right"><font color="blue"><b><a href='notice_manage.jsp'>通知管理</a></b></font></td>
+          <td width="20%" align="center"><font color="blue"><b><a href='class_manage.jsp'><font color="red">版面管理</font></a></b></font></td>
+          <td width="40%" align="left"><font color="blue"><b><a href='user_manage.jsp'>用户管理</a></b></font></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+ <a href="logout.jsp">退出并返回登录页面</a><br>
+  <table border = 1 width = 80% >
+<tr>
+<td width=80>通知ID</td>
+<td width=200>通知标题</td>
+<td width=500>通知内容</td>
+<td>发布时间</td>
+<td width=150>操作<br><a href="newnot.jsp"><font color="red">发布新通知</font></td>
+</tr>
+<%String sql = "select * from notice";
+ ResultSet rs = st.executeQuery(sql);
+
+ while(rs.next()){%>
+	 <%String id=rs.getString("noticeid");
+	 String ntime=rs.getString("ntime");
+	 %>
+
+<TR>
+<TD><%=id%></td>
+<TD><%=rs.getString("ntitle")%></td>
+<td><%=rs.getString("ncontent")%></td>
+<TD><%=ntime%></td>
+
+<td><a href = "delnot.jsp?id=<%=id%>" onclick="{if(confirm('确定删除选定的纪录吗?')){return true;}return false;}">删除</a>/<a href="updnot.jsp?id=<%=id%>">查看或修改</a></td>
+</tr>
+<%}%>
+
+</center>
+</body>
+<html>

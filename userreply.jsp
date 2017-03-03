@@ -1,0 +1,45 @@
+
+<%@page contentType="text/html;charset=gb2312"%>
+<%@ include file="usercentertop.jsp"%>
+<%@ page import="java.util.*"%> 
+<meta charset="gb2312">
+
+<%username=(String)session.getValue("username");
+  String sql="select * from reply where username='"+username+"'";
+  ResultSet rs=st.executeQuery(sql);  	%>  
+ <html>
+ <body>
+ <center>
+  <table bgcolor="#FFff99">  
+  <tr>
+	<td width="92"><div align="center"><strong>回复内容</strong></div></td>
+    <td width="94"><div align="center"><strong>被回复的主题帖</strong></div></td>
+    <td width="108"><div align="center"><strong>发表日期</strong></div></td>
+    <td width="88"><div align="center"><strong>操作</strong></div></td>
+</tr>
+<%while(rs.next())
+{String rcontent=rs.getString("rcontent");
+String rid=rs.getString("replyid");
+String tid=rs.getString("topicid");
+String rtime=rs.getString("rtime");
+Connection conn1 =DriverManager.getConnection(dbURL);
+Statement st1=conn.createStatement();
+String sql1="select * from topic where topicid="+tid;
+ResultSet rs1=st1.executeQuery(sql1);
+String t_name="";
+if(rs1.next()){ t_name=rs1.getString("tname");}
+conn1.close();
+st1.close();
+%>
+<tr bgcolor="#FFFFCC">
+<td><%=rcontent%></td>
+<td><%=t_name%></td>
+<td><%=rtime%></td>
+<td><a href="delmyreply.jsp?id=<%=rid%>">删除</a></td>
+</tr>
+<%}st.close();
+conn.close();%>
+</table>
+</center>
+</body>
+</html>
